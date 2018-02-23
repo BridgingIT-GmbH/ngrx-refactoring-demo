@@ -1,0 +1,63 @@
+{
+    "date": "2018-04-11T00:00:00",
+    "slots": [
+        {
+            "timeFrom": "10:15",
+            "timeUntil": "11:00",
+            "icon": "info",
+            "sessions": [
+                {
+                    "title": "Keynote: Lorem ipsum dolor sit amet, consectetur adipisici elit"
+                }
+            ]
+        },
+        {
+            "timeFrom": "11:00",
+            "timeUntil": "11:15",
+            "icon": "pause_circle_outline",
+            "break": true,
+            "sessions": [
+                {
+                    "title": "Pause"
+                }
+            ]
+        },
+        {
+            "timeFrom": "11:15",
+            "timeUntil": "12:00",
+            "icon": "person",
+            "sessions": [
+                {
+                    "title": "Session: Lorem ipsum dolor sit amet"
+                },
+                {
+                    "title": "Session: Lorem ipsum dolor sit amet"
+                }
+            ]
+        },
+        {
+            "timeFrom": "12:00",
+            "timeUntil": "12:45",
+            "icon": "local_pizza",
+            "break": true,
+            "sessions": [
+                {
+                    "title": "Mittagspause"
+                }
+            ]
+        },
+        {
+            "timeFrom": "12:45",
+            "timeUntil": "13:30",
+            "icon": "person",
+            "sessions": [
+                {
+                    "title": "Session: Lorem ipsum dolor sit amet"
+                },
+                {
+                    "title": "Session: Lorem ipsum dolor sit amet"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+<button mat-raised-button color="primary" (click)="load()">Reload</button>
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<div *ngIf="!loading">
+  <h1>{{schedule.date | date}}</h1>
+  <mat-list>
+    <ng-container *ngFor="let slot of schedule?.slots">
+      <h3 mat-subheader>{{slot.timeFrom}} - {{slot.timeUntil}}</h3>
+      <div class="slot-session-container" [ngClass]="{'break': slot.break}">
+        <mat-list-item *ngFor="let session of slot.sessions">
+          <mat-icon mat-list-icon>{{slot.icon}}</mat-icon>
+          <h4 mat-line>{{session.title}}</h4>
+        </mat-list-item>
+      </div>
+      <mat-divider></mat-divider>
+    </ng-container>
+  </mat-list>
+</div>
