@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'variables';
+
+@include mat-core();
+@include angular-material-theme($theme);
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family:Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+    font-size: 16px;
+}
