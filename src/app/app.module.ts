@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatListModule, MatIconModule, MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatListModule, MatIconModule, MatButtonModule, MatProgressSpinnerModule, MatProgressBarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -28,6 +28,7 @@ import { ConferenceService } from './conference/conference.service';
     MatIconModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
     AppRoutingModule
   ],
   providers: [ConferenceService],

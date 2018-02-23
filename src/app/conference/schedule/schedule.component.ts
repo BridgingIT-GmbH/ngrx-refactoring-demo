@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ConferenceService } from '../conference.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -15,10 +15,13 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   public loading: boolean;
   private scheduleSubscription: Subscription;
 
+  @Output() public loadingChange = new EventEmitter<boolean>();
+
   constructor(private conferenceService: ConferenceService) { }
 
   public load() {
     this.loading = true;
+    this.loadingChange.emit(true);
     this.schedule = undefined;
 
     if (this.scheduleSubscription) {
@@ -28,6 +31,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.scheduleSubscription = this.conferenceService.loadSchedule().subscribe((schedule) => {
       this.schedule = schedule;
       this.loading = false;
+      this.loadingChange.emit(false);
     });
   }
 

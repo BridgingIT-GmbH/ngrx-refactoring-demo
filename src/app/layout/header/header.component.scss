@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .spacer {
+        flex: 1;
+    }
+
+    mat-progress-bar {
+        width: 25%;
+    }
+}

@@ -1,9 +1,9 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <header class="mat-elevation-z6">
-  <app-header></app-header>
-</header>
-
-<main>
-  <app-schedule></app-schedule>
-  <!--router-outlet></router-outlet-->
-</main>
+    <app-header [loading]="loading"></app-header>
+  </header>
+  
+  <main>
+    <app-schedule (loadingChange)="onLoading($event)"></app-schedule>
+    <!--router-outlet></router-outlet-->
+  </main>
+  
