@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ConferenceService } from '../../conference/conference.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() public loading: boolean;
+  public loading$: Observable<boolean>;
 
-  constructor() { }
+  constructor(conferenceService: ConferenceService) {
+    this.loading$ = conferenceService.loading$;
+  }
 
   ngOnInit() {
   }

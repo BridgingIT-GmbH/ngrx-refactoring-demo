@@ -12,16 +12,14 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 export class ScheduleComponent implements OnInit, OnDestroy {
 
   public schedule;
-  public loading: boolean;
+  public loading$: Observable<boolean>;
   private scheduleSubscription: Subscription;
 
-  @Output() public loadingChange = new EventEmitter<boolean>();
-
-  constructor(private conferenceService: ConferenceService) { }
+  constructor(private conferenceService: ConferenceService) {
+    this.loading$ = conferenceService.loading$;
+  }
 
   public load() {
-    this.loading = true;
-    this.loadingChange.emit(true);
     this.schedule = undefined;
 
     if (this.scheduleSubscription) {
@@ -30,8 +28,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
     this.scheduleSubscription = this.conferenceService.loadSchedule().subscribe((schedule) => {
       this.schedule = schedule;
-      this.loading = false;
-      this.loadingChange.emit(false);
     });
   }
 

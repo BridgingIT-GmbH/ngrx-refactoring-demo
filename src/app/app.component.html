@@ -1,9 +1,8 @@
 <header class="mat-elevation-z6">
-    <app-header [loading]="loading"></app-header>
+    <app-header></app-header>
   </header>
   
   <main>
-    <app-schedule (loadingChange)="onLoading($event)"></app-schedule>
-    <!--router-outlet></router-outlet-->
+    <router-outlet></router-outlet>
   </main>
   
