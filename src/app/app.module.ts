@@ -12,6 +12,10 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { ScheduleComponent } from './conference/schedule/schedule.component';
 import { ConferenceService } from './conference/conference.service';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -29,7 +33,9 @@ import { ConferenceService } from './conference/conference.service';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [ConferenceService],
   bootstrap: [AppComponent]
