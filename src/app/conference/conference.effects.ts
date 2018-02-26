@@ -5,8 +5,8 @@ import { ConferenceActions, ConferenceActionTypes } from './conference.actions';
 @Injectable()
 export class ConferenceEffects {
 
-  @Effect()
-  effect$ = this.actions$.ofType(ConferenceActionTypes.ConferenceAction);
+  //@Effect()
+  //effect$ = this.actions$.ofType(ConferenceActionTypes.ConferenceAction);
 
   constructor(private actions$: Actions) {}
 }

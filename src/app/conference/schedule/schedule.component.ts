@@ -3,42 +3,32 @@ import { ConferenceService } from '../conference.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Store } from '@ngrx/store';
+import { State } from '../../store';
+import { ISchedule } from '../conference.model';
+import { LoadSchedule } from '../conference.actions';
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss']
 })
-export class ScheduleComponent implements OnInit, OnDestroy {
+export class ScheduleComponent implements OnInit {
 
-  public schedule;
   public loading$: Observable<boolean>;
-  private scheduleSubscription: Subscription;
+  public schedule$: Observable<ISchedule>;
 
-  constructor(private conferenceService: ConferenceService) {
-    this.loading$ = conferenceService.loading$;
+  constructor(private store: Store<State>) {
+    this.loading$ = store.select('conference', 'loading');
+    this.schedule$ = store.select('conference', 'schedule');
   }
 
   public load() {
-    this.schedule = undefined;
-
-    if (this.scheduleSubscription) {
-      this.scheduleSubscription.unsubscribe();
-    }
-
-    this.scheduleSubscription = this.conferenceService.loadSchedule().subscribe((schedule) => {
-      this.schedule = schedule;
-    });
+    this.store.dispatch(new LoadSchedule());
   }
 
   ngOnInit() {
     this.load();
-  }
-
-  ngOnDestroy() {
-    if (this.scheduleSubscription) {
-      this.scheduleSubscription.unsubscribe();
-    }
   }
 
 }

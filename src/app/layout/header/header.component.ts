@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ConferenceService } from '../../conference/conference.service';
 import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+import { State } from '../../store';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +13,8 @@ export class HeaderComponent implements OnInit {
 
   public loading$: Observable<boolean>;
 
-  constructor(conferenceService: ConferenceService) {
-    this.loading$ = conferenceService.loading$;
+  constructor(store: Store<State>) {
+    this.loading$ = store.select('conference', 'loading');
   }
 
   ngOnInit() {

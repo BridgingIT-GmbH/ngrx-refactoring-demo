@@ -1,7 +1,7 @@
 <button mat-raised-button color="primary" (click)="load()">Reload</button>
 <mat-spinner *ngIf="loading$ | async"></mat-spinner>
 
-<div *ngIf="!(loading$ | async)">
+<div *ngIf="(schedule$ | async) as schedule">
   <h1>{{schedule.date | date}}</h1>
   <mat-list>
     <ng-container *ngFor="let slot of schedule?.slots">
