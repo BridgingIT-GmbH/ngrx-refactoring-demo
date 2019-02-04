@@ -1,14 +1,14 @@
 import { Action } from '@ngrx/store';
 
 export enum ConferenceActionTypes {
-  LoadConferences = '[Conference] Load Conferences',
-  
-  
+  LoadSchedule = '[Conference] LoadSchedule',
+
+
 }
 
-export class LoadConferences implements Action {
-  readonly type = ConferenceActionTypes.LoadConferences;
+export class LoadSchedule implements Action {
+  readonly type = ConferenceActionTypes.LoadSchedule;
 }
 
 
-export type ConferenceActions = LoadConferences;
+export type ConferenceActions = LoadSchedule;

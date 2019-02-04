@@ -1,43 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { ConferenceService } from '../conference.service';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { ISchedule } from '../conference.model';
+import { select, Store } from '@ngrx/store';
+import { State } from '../../reducers';
+import { LoadSchedule } from '../conference.actions';
+import { loading, schedule } from '../conference.reducer';
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss']
 })
-export class ScheduleComponent implements OnInit, OnDestroy {
+export class ScheduleComponent implements OnInit {
 
-  public schedule;
+  public schedule$: Observable<ISchedule>;
   public loading$: Observable<boolean>;
-  private scheduleSubscription: Subscription;
 
-  constructor(private conferenceService: ConferenceService) {
-    this.loading$ = conferenceService.loading$;
+  constructor(private store: Store<State>) {
+    this.loading$ = this.store.pipe(select(loading));
+    this.schedule$ = this.store.pipe(select(schedule));
   }
 
   public load() {
-    this.schedule = undefined;
-
-    if (this.scheduleSubscription) {
-      this.scheduleSubscription.unsubscribe();
-    }
-
-    this.scheduleSubscription = this.conferenceService.loadSchedule().subscribe((schedule) => {
-      this.schedule = schedule;
-    });
+    this.store.dispatch(new LoadSchedule());
   }
 
   ngOnInit() {
     this.load();
-  }
-
-  ngOnDestroy() {
-    if (this.scheduleSubscription) {
-      this.scheduleSubscription.unsubscribe();
-    }
   }
 
 }
