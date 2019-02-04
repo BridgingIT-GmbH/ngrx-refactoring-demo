@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ConferenceService } from '../../conference/conference.service';
-import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
-import { State } from '../../store';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { State } from '../../reducers';
+import { loading } from '../../conference/conference.reducer';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   public loading$: Observable<boolean>;
 
   constructor(store: Store<State>) {
-    this.loading$ = store.select('conference', 'loading');
+    this.loading$ = store.pipe(select(loading));
   }
 
   ngOnInit() {

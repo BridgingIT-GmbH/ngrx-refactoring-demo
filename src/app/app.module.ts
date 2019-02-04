@@ -13,10 +13,11 @@ import { HeaderComponent } from './layout/header/header.component';
 import { ScheduleComponent } from './conference/schedule/schedule.component';
 import { ConferenceService } from './conference/conference.service';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './store';
+import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './app.effects';
 import { ConferenceEffects } from './conference/conference.effects';
 
 
@@ -37,8 +38,8 @@ import { ConferenceEffects } from './conference/conference.effects';
     MatProgressBarModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([ConferenceEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([AppEffects, ConferenceEffects])
   ],
   providers: [ConferenceService],
   bootstrap: [AppComponent]

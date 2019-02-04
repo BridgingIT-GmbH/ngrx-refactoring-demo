@@ -1,12 +1,10 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { ConferenceService } from '../conference.service';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
-import { Store } from '@ngrx/store';
-import { State } from '../../store';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ISchedule } from '../conference.model';
+import { select, Store } from '@ngrx/store';
+import { State } from '../../reducers';
 import { LoadSchedule } from '../conference.actions';
+import { loading, schedule } from '../conference.reducer';
 
 @Component({
   selector: 'app-schedule',
@@ -15,12 +13,12 @@ import { LoadSchedule } from '../conference.actions';
 })
 export class ScheduleComponent implements OnInit {
 
-  public loading$: Observable<boolean>;
   public schedule$: Observable<ISchedule>;
+  public loading$: Observable<boolean>;
 
   constructor(private store: Store<State>) {
-    this.loading$ = store.select('conference', 'loading');
-    this.schedule$ = store.select('conference', 'schedule');
+    this.loading$ = this.store.pipe(select(loading));
+    this.schedule$ = this.store.pipe(select(schedule));
   }
 
   public load() {
