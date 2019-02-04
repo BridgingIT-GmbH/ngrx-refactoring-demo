@@ -4,7 +4,7 @@ import { MatListModule, MatIconModule, MatButtonModule, MatProgressSpinnerModule
 import { ScheduleComponent } from './schedule.component';
 import { ConferenceService } from '../conference.service';
 
-import { of } from 'rxjs/observable/of';
+import { of } from 'rxjs';
 
 describe('ScheduleComponent', () => {
   let component: ScheduleComponent;

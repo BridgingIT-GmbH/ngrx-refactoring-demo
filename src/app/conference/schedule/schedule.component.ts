@@ -1,8 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConferenceService } from '../conference.service';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-schedule',

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { delay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 @Injectable()
