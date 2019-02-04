@@ -12,6 +12,12 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { ScheduleComponent } from './conference/schedule/schedule.component';
 import { ConferenceService } from './conference/conference.service';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './app.effects';
 
 
 @NgModule({
@@ -29,7 +35,10 @@ import { ConferenceService } from './conference/conference.service';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([AppEffects])
   ],
   providers: [ConferenceService],
   bootstrap: [AppComponent]
